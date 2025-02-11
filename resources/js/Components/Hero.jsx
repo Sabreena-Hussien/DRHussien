@@ -1,6 +1,6 @@
 import React from "react";
 import heroImg from "../../images/heroImg.png";
-const Hero = () => {
+const Hero = ({abouts}) => {
     return (
         <div className="bg-theme-100">
             <div className="container bg-theme-100">
@@ -16,12 +16,18 @@ const Hero = () => {
                             رئيس مؤسسة رابطة الاقتصاديين
                         </p>
                         <div className="flex md:flex-row flex-col ">
-                            <button className="flex justify-center basis-full w-full text-base font-bold items-center rounded-md bg-theme-500 border-theme-500 text-white lg:h-11 px-6 py-5 ml-3 sm:h-4 md:mb-0 sm:mb-4 hover:border-2 hover:border-theme-500 hover:bg-theme-100 hover:text-theme-500">
-                                قراءة السيرة الذاتية
-                            </button>
-                            <button className="flex justify-center basis-full lg:mt-0 mt-4 w-full text-base font-bold items-center rounded-md border-2 border-theme-500 bg-theme-100 text-theme-500 lg:h-10 px-6 py-5 sm:h-4 md:mb-0 sm:mb-4 hover:bg-theme-500 hover:text-white ">
+                            <a
+                                href={abouts.cv_arabic_path}
+                                className="flex justify-center lg:w-52 w-full text-base font-bold items-center rounded-md bg-theme-500 border-theme-500 text-white lg:h-11 px-6 py-5 ml-3 sm:h-4 md:mb-0 sm:mb-4 hover:border-2 hover:border-theme-500 hover:bg-theme-100 hover:text-theme-500"
+                            >
                                 تحميل السيرة الذاتية
-                            </button>
+                            </a>
+                            <a
+                                href={abouts.cv_english_path}
+                                className="flex justify-center lg:mt-0 mt-4  lg:w-52 w-full text-base font-bold items-center rounded-md border-2 border-theme-500 bg-theme-100 text-theme-500 lg:h-10 px-6 py-5 sm:h-4 md:mb-0 sm:mb-4 hover:bg-theme-500 hover:text-white "
+                            >
+                                CV DOWNLOAD
+                            </a>
                         </div>
                     </div>
                     <div className="relative">

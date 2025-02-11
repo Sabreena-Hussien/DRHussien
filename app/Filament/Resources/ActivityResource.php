@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Card;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 
 class ActivityResource extends Resource
@@ -42,7 +43,8 @@ class ActivityResource extends Resource
     {
         return $table
             ->columns([
-
+                TextColumn::make('title')->label('العنوان'),
+                TextColumn::make('date')->label('التاريخ'),
             ])
             ->filters([
                 //

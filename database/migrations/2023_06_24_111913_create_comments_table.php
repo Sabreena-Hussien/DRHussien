@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text("message");
             $table->unsignedBigInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-            $table->boolean('accepted');
+            $table->boolean('accepted')->default(0);
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }

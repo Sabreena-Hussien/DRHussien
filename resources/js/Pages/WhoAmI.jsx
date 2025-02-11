@@ -21,7 +21,6 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
     //     },
     // ];
 
-
     return (
         <Layout>
             <div className="container flex-col w-full mt-16 mb-16">
@@ -30,7 +29,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                         <h2 className="text-theme-900 text-3xl font-bold  mb-6">
                             من أنا؟
                         </h2>
-                        <p className="mt-4 mb-8">{abouts[0].about_me}</p>
+                        <p className="mt-4 mb-8">{abouts.about_me}</p>
                         <h3 className="text-theme-900 text-2xl font-bold  mb-2">
                             معلومات شخصية
                         </h3>
@@ -40,7 +39,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     الاسم:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].name}
+                                    {abouts.name}
                                 </span>
                             </div>
                             <div className="mb-2">
@@ -48,7 +47,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     تاريخ ومحل الميلاد:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].birth}
+                                    {abouts.birth}
                                 </span>
                             </div>
                             <div className="mb-2">
@@ -56,7 +55,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     العنوان:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].address}
+                                    {abouts.address}
                                 </span>
                             </div>
                             <div className="mb-2">
@@ -64,7 +63,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     رقم التلفون:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].phone1}
+                                    {abouts.phone1}
                                 </span>
                             </div>
                             <div className="mb-2">
@@ -72,7 +71,7 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     رقم الواتساب:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].phone2}
+                                    {abouts.phone2}
                                 </span>
                             </div>
                             <div className="mb-2">
@@ -80,18 +79,18 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
                                     البريد الالكتروني:
                                 </span>
                                 <span className="text-theme-900 font-medium mb-8">
-                                    {abouts[0].email}
+                                    {abouts.email}
                                 </span>
                             </div>
                         </div>
 
                         <div className="flex md:flex-row flex-col ">
-                            <button className="flex justify-center  lg:w-52 w-full text-base font-bold items-center rounded-md bg-theme-500 border-theme-500 text-white lg:h-11 px-6 py-5 ml-3 sm:h-4 md:mb-0 sm:mb-4 hover:border-2 hover:border-theme-500 hover:bg-white hover:text-theme-500">
-                                قراءة السيرة الذاتية
-                            </button>
-                            <button className="flex justify-center  lg:mt-0 mt-4  lg:w-52 w-full text-base font-bold items-center rounded-md border-2 border-theme-500 bg-white text-theme-500 lg:h-10 px-6 py-5 sm:h-4 md:mb-0 sm:mb-4 hover:bg-theme-500 hover:text-white ">
+                            <a href={abouts.cv_arabic_path} className="flex justify-center lg:w-52 w-full text-base font-bold items-center rounded-md bg-theme-500 border-theme-500 text-white lg:h-11 px-6 py-5 ml-3 sm:h-4 md:mb-0 sm:mb-4 hover:border-2 hover:border-theme-500 hover:bg-white hover:text-theme-500">
                                 تحميل السيرة الذاتية
-                            </button>
+                            </a>
+                            <a href={abouts.cv_english_path} className="flex justify-center lg:mt-0 mt-4  lg:w-52 w-full text-base font-bold items-center rounded-md border-2 border-theme-500 bg-white text-theme-500 lg:h-10 px-6 py-5 sm:h-4 md:mb-0 sm:mb-4 hover:bg-theme-500 hover:text-white ">
+                                CV Download
+                            </a>
                         </div>
                     </div>
 
@@ -103,7 +102,12 @@ const WhoAmI = ({ abouts, resumes, resumeType_id }) => {
             </div>
             <div className="bg-theme-100 py-10">
                 <div className="container">
-                    <CV showDetails={false} resumes={resumes} resumeType_id={resumeType_id} />
+                    <CV
+                        showDetails={false}
+                        resumes={resumes}
+                        resumeType_id={resumeType_id}
+                    />
+                    {/* {console.log(resumes)} */}
                 </div>
             </div>
         </Layout>

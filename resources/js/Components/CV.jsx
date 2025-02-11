@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import parse from "html-react-parser";
 
 const MyBtn = (props) => {
     if (props.show) {
@@ -16,6 +17,8 @@ const MyBtn = (props) => {
 };
 
 const CV = ({ resumes, resumeType_id, ...props }) => {
+    const newResumes = Object.entries(resumes);
+
     // const head = [
     //     {
     //         key: 0,
@@ -110,58 +113,117 @@ const CV = ({ resumes, resumeType_id, ...props }) => {
                 <h3 className="text-theme-900 font-bold text-3xl mb-16">
                     السيرة الذاتية
                 </h3>
-
-                {console.log(resumeType_id)}
                 <div>
-                    {resumes.map((h, key) => (
-                        <div className="mb-8" key={key}>
-                            <h3 className="text-theme-900 text-lg font-bold text-center mb-6">
-                                {console.log(resumeType_id)}
-                                {h.resumeType_id}
+                    {newResumes.map((h, key) => (
+                        <Fragment key={key}>
+                            <h3
+                                className="text-theme-900 text-lg font-bold text-center my-6"
+                            >
+                                {h[0]}
                             </h3>
-                            <div className="relative w-full max-w-[1140px] my-0 mx-auto py-4 px-0 after:content-[''] after:absolute after:w-[2px] after:bg-theme-500 after:top-0 after:bottom-0 after:left-[96%] after:lg:left-1/2 after:md:left-1/2 after:-ml-[1px]">
-                                <div>
-                                    {key % 2 === 0 ? (
-                                        <div className="relative py-4 px-7 lg:flex md:flex items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-100 after:border after:border-theme-500 after:rounded-2xl after:z-10">
-                                            <div className="lg:pl-40 md:pl-40 pr-7 lg:text-left md:text-left text-right left-0 lg:w-[49.4%] md:w-[49.4%] w-full ">
-                                                <p className="text-slate-800 text-lg sm:mb-1">
-                                                    {h.date}
-                                                </p>
+                            {h[1].map((info, key) =>
+                                key === 0 ? (
+                                    <div className="" key={key}>
+                                        <div className="relative w-full max-w-[1140px] my-0 mx-auto py-4 px-0 after:content-[''] after:absolute after:w-[2px] after:bg-theme-500 after:top-0 after:bottom-0 after:left-[96%] after:lg:left-1/2 after:md:left-1/2 after:-ml-[1px]">
+                                            <div>
+                                                {key % 2 === 0 ? (
+                                                    <div className="relative py-4 px-7 lg:flex md:flex items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-100 after:border after:border-theme-500 after:rounded-2xl after:z-10">
+                                                        {/* {console.log(h)} */}
+                                                        <div className="lg:pl-40 md:pl-40 pr-7 lg:text-left md:text-left text-right left-0 lg:w-[49.4%] md:w-[49.4%] w-full ">
+                                                            <p className="text-slate-800 text-lg sm:mb-1">
+                                                                {info.date}
+                                                            </p>
 
-                                                <h4 className="text-theme-500 text-xl font-bold sm:mb-1">
-                                                    {h.title}
-                                                </h4>
-                                            </div>
-                                            <div className="lg:w-[49.4%] md:w-[49.4%] w-full pt-3">
-                                                <ul className="lg:pr-40 md:pr-40 pr-14 lg:left-full left-14 list-disc ">
-                                                    {h.description}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="relative py-4 px-7 lg:flex lg:flex-row md:flex md:flex-row flex flex-col-reverse items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-500 after:border after:border-theme-500 after:rounded-2xl after:z-10">
-                                            <div className="lg:w-[49.4%] md:w-[49.4%] w-full">
-                                                <ul
-                                                    className="
+                                                            <h4 className="text-theme-500 text-xl font-bold sm:mb-1">
+                                                                {info.title}
+                                                            </h4>
+                                                        </div>
+                                                        <div className="lg:w-[49.4%] md:w-[49.4%] w-full pt-3">
+                                                            <ul className="lg:pr-40 md:pr-40 pr-14 lg:left-full left-14 list-disc ">
+                                                                {parse(
+                                                                    info.description
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="relative py-4 px-7 lg:flex lg:flex-row md:flex md:flex-row flex flex-col-reverse items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-500 after:border after:border-theme-500 after:rounded-2xl after:z-10">
+                                                        <div className="lg:w-[49.4%] md:w-[49.4%] w-full">
+                                                            <ul
+                                                                className="
                                         lg:pl-40 md:pl-40 pr-14 lg:left-full left-14 list-disc pt-3"
-                                                >
-                                                    {h.description}
-                                                </ul>
-                                            </div>
-                                            <div className="lg:pr-36 pr-7 lg:left-0 right-2 lg:w-[49.4%] md:w-[49.4%] w-full">
-                                                <p className="text-slate-800 text-lg">
-                                                    {h.date}
-                                                </p>
+                                                            >
+                                                                {parse(
+                                                                    info.description
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                        <div className="lg:pr-36 pr-7 lg:left-0 right-2 lg:w-[49.4%] md:w-[49.4%] w-full">
+                                                            <p className="text-slate-800 text-lg">
+                                                                {info.date}
+                                                            </p>
 
-                                                <h4 className="text-theme-500 text-xl font-bold">
-                                                    {h.title}
-                                                </h4>
+                                                            <h4 className="text-theme-500 text-xl font-bold">
+                                                                {info.title}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="" key={key}>
+                                        <div className="relative w-full max-w-[1140px] my-0 mx-auto py-4 px-0 after:content-[''] after:absolute after:w-[2px] after:bg-theme-500 after:top-0 after:bottom-0 after:left-[96%] after:lg:left-1/2 after:md:left-1/2 after:-ml-[1px]">
+                                            <div>
+                                                {key % 2 === 0 ? (
+                                                    <div className="relative py-4 px-7 lg:flex md:flex items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-100 after:border after:border-theme-500 after:rounded-2xl after:z-10">
+                                                        <div className="lg:pl-40 md:pl-40 pr-7 lg:text-left md:text-left text-right left-0 lg:w-[49.4%] md:w-[49.4%] w-full ">
+                                                            <p className="text-slate-800 text-lg sm:mb-1">
+                                                                {info.date}
+                                                            </p>
+
+                                                            <h4 className="text-theme-500 text-xl font-bold sm:mb-1">
+                                                                {info.title}
+                                                            </h4>
+                                                        </div>
+                                                        <div className="lg:w-[49.4%] md:w-[49.4%] w-full pt-3">
+                                                            <ul className="lg:pr-40 md:pr-40 pr-14 lg:left-full left-14 list-disc ">
+                                                                {parse(
+                                                                    info.description
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="relative py-4 px-7 lg:flex lg:flex-row md:flex md:flex-row flex flex-col-reverse items-start justify-center after:content-[''] after:absolute after:w-4 after:h-4 after:top-4 after:lg:left-[49.3%] after:left-[94%] after:bg-theme-500 after:border after:border-theme-500 after:rounded-2xl after:z-10">
+                                                        <div className="lg:w-[49.4%] md:w-[49.4%] w-full">
+                                                            <ul
+                                                                className="
+                                lg:pl-40 md:pl-40 pr-14 lg:left-full left-14 list-disc pt-3"
+                                                            >
+                                                                {parse(
+                                                                    info.description
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                        <div className="lg:pr-36 pr-7 lg:left-0 right-2 lg:w-[49.4%] md:w-[49.4%] w-full">
+                                                            <p className="text-slate-800 text-lg">
+                                                                {info.date}
+                                                            </p>
+
+                                                            <h4 className="text-theme-500 text-xl font-bold">
+                                                                {info.title}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            )}
+                        </Fragment>
                     ))}
                 </div>
 

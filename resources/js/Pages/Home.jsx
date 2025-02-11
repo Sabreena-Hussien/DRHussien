@@ -7,10 +7,10 @@ import Layout from "../Components/Layout";
 import Me from "../Components/Me";
 import Price from "../Components/Price";
 
-const Home = ({activities, articles, abouts}) => {
+const Home = ({ activities, articles, abouts }) => {
     return (
         <Layout abouts={abouts}>
-            <Hero />
+            <Hero abouts={abouts} />
             <Me abouts={abouts} />
 
             <Price />

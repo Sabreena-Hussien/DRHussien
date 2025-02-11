@@ -1,33 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../Components/Layout";
 import ArticlesSideBar from "../Components/ArticlesSideBar";
 import Pages from "../Components/Pages";
 import { Link } from "@inertiajs/react";
-// import { Link } from "@inertiajs/inertia-react";
-import { route } from '../ziggy';
 
-const Articles = ({ articles }) => {
-    // const article = [
-    //     {
-    //         id: 0,
-    //         image: img1,
-    //         date: "14-4-2021",
-    //         comments: "2",
-    //         title: "العلاقة التبادلية بين طبعتي الريال",
-    //         description:
-    //             "تماهيا مع حاجات ومتطلبات وهموم البلد الاقتصادية والاجتماعية والمعيشية الخطيرة وترجمة لتوجهات الرابطة في المساهمة الإيجابية في تقديم حلول...",
-    //     },
-    //     {
-    //         id: 1,
-    //         image: img1,
-    //         date: "14-4-2021",
-    //         comments: "2",
-    //         title: "العلاقة التبادلية بين طبعتي الريال",
-    //         description:
-    //             "تماهيا مع حاجات ومتطلبات وهموم البلد الاقتصادية والاجتماعية والمعيشية الخطيرة وترجمة لتوجهات الرابطة في المساهمة الإيجابية في تقديم حلول...",
-    //     },
-    // ];
-
+const Articles = ({ articles, allArticles }) => {
     return (
         <Layout>
             <div className="container lg:flex lg:flex-row flex-col">
@@ -36,7 +13,7 @@ const Articles = ({ articles }) => {
                         المقالات
                     </h2>
                     <div>
-                        {articles.map((a, key) => (
+                        {articles.data.map((a, key) => (
                             <div
                                 className="shadow lg:not-last-mb-10 mb-10"
                                 key={key}
@@ -78,6 +55,7 @@ const Articles = ({ articles }) => {
                                                 d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
                                             />
                                         </svg>
+                                        {a.comments.length}
                                     </div>
                                 </div>
                                 <h3 className="text-xl text-theme-900 font-bold my-1 mr-4">
@@ -88,7 +66,7 @@ const Articles = ({ articles }) => {
                                 </p>
                                 <div className="flex justify-end items-center">
                                     <Link
-                                        href={route("article", {slug: a.slug})}
+                                        href={`article/${a.slug}`}
                                         className="flex mb-4 py-1 ml-4 bg-theme-500 px-3 pt-1.5  rounded-md font-bold text-white border-2 border-theme-500 float-left cursor-pointer hover:border-2 hover:border-theme-500 hover:bg-white hover:text-theme-500"
                                     >
                                         قراءة المزيد
@@ -111,9 +89,9 @@ const Articles = ({ articles }) => {
                             </div>
                         ))}
                     </div>
-                    <Pages />
+                    <Pages pagination={articles.links}  />
                 </div>
-                <ArticlesSideBar />
+                <ArticlesSideBar articles={articles.data} />
             </div>
         </Layout>
     );

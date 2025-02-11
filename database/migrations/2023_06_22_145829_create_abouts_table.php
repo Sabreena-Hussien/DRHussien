@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("phone1");
             $table->string("phone2");
             $table->text("about_me_long");
+            $table->string('cv_arabic');
+            $table->string('cv_english');
             $table->timestamps();
         });
     }

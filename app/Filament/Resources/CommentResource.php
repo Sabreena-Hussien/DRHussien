@@ -10,8 +10,10 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class CommentResource extends Resource
 {
@@ -26,6 +28,12 @@ class CommentResource extends Resource
                 Forms\Components\TextInput::make('name')->label('العنوان')->required(),
                 Forms\Components\TextInput::make('message')->label('الرسالة')->required(),
                 Forms\Components\Checkbox::make('accepted')->label('مقبول')->required(),
+                Forms\Components\Repeater::make('comments')->relationship()
+                ->schema([
+                    Forms\Components\Hidden::make('article_id')->default(fn($get) => $get('../../article_id'))->required(),
+                    Forms\Components\TextInput::make('name')->default("الادمن")->required(),
+                    Forms\Components\TextInput::make('message')->label('الرسالة')->required(),
+                ]),
             ]);
     }
 
@@ -33,7 +41,8 @@ class CommentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->label('العنوان'),
+                TextColumn::make('message')->label('الرسالة'),
             ])
             ->filters([
                 //

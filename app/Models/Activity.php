@@ -14,11 +14,16 @@ class Activity extends Model
         'time', 'title', 'date', 'summary', 'content', 'image', 'images', 'slug'
     ];
 
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path', 'images_path'];
 
     public function imagePath(): Attribute
     {
         return Attribute::make(fn () => asset('storage/' . $this->image));
+    }
+
+    public function imagesPath(): Attribute
+    {
+        return Attribute::make(fn () => asset('storage/'));
     }
 
     protected $casts = [

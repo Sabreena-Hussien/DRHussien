@@ -13,7 +13,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-
+use Filament\Tables\Columns\TextColumn;
 
 class UserResource extends Resource
 {
@@ -44,7 +44,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->label('الاسم'),
+                TextColumn::make('email')->label('البريد'),
             ])
             ->filters([
                 //

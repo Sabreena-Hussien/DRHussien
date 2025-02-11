@@ -17,7 +17,7 @@ class Resume extends Model
     // {
     //     return $this->belongsTo(ResumeType::class, 'resumeType_id', 'id');
     // }
-    public function resumeType()
+    public function resumeType() 
     {
         return $this->belongsTo(ResumeType::class, "resumeType_id", "id");
     }

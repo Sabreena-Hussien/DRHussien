@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -31,6 +32,8 @@ class AboutResource extends Resource
             Forms\Components\TextInput::make('email')->label('الايميل'),
             Forms\Components\TextInput::make('phone1')->label('رقم التلفون الاول')->required(),
             Forms\Components\TextInput::make('phone2')->label('رقم التلفون الثاني')->required(),
+            Forms\Components\FileUpload::make('cv_arabic')->label('السيرة الذاتية عربي')->required(),
+            Forms\Components\FileUpload::make('cv_english')->label('السيرة الذاتية انجليزي')->required(),
         ]);
     }
 
@@ -38,7 +41,7 @@ class AboutResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('about_me')->label('معلومات مختصرة'),
             ])
             ->filters([
                 //

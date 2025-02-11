@@ -11,5 +11,4 @@ class ResumeType extends Model
 
     protected $fillable = ["name"];
 
-   
 }

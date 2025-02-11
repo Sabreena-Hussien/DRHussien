@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
 use App\Models\ResumeType;
+use Filament\Tables\Columns\TextColumn;
 
 class ResumeResource extends Resource
 {
@@ -39,7 +40,9 @@ class ResumeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('date')->label('التاريخ'),
+                TextColumn::make('title')->label('العنوان'),
+                TextColumn::make('resumeType_id')->label('اسم القسم'),
             ])
             ->filters([
                 //

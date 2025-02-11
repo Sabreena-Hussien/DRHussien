@@ -1,41 +1,19 @@
 import React from "react";
 
 const Article = ({ articles }) => {
-    // const article = [
-    //     {
-    //         id: 0,
-    //         date: "12-12-2022",
-    //         title: "العلاقة التبادلية بين طبعتي الريال ",
-    //         description:
-    //             "تماهيا مع حاجات ومتطلبات وهموم البلد الاقتصادية والاجتماعية والمعيشية الخطيرة وترجمة لتوجهات الرابطة في المساهمة الإيجابية في تقديم حلول...",
-    //     },
-    //     {
-    //         id: 1,
-    //         date: "12-12-2022",
-    //         title: "حرب العملة سلاح المتحاربين الجديد",
-    //         description:
-    //             "تماهيا مع حاجات ومتطلبات وهموم البلد الاقتصادية والاجتماعية والمعيشية الخطيرة وترجمة لتوجهات الرابطة في المساهمة الإيجابية في تقديم حلول...",
-    //     },
-    //     {
-    //         id: 2,
-    //         date: "12-12-2022",
-    //         title: "رحلة الالف ميل تبدأ بخطوة",
-    //         description:
-    //             "تماهيا مع حاجات ومتطلبات وهموم البلد الاقتصادية والاجتماعية والمعيشية الخطيرة وترجمة لتوجهات الرابطة في المساهمة الإيجابية في تقديم حلول...",
-    //     },
-    // ];
+
 
     return (
         <div className=" bg-theme-100 py-8 ">
             <div className="container ">
                 <h3 className="text-theme-900 font-bold text-3xl mb-4">
-                    {articles.title}
+                    المقالات
                 </h3>
                 <div className="flex justify-center items-center lg:flex-row flex-col mb-2">
                     {articles.map((a, key) => (
                         <div
                             key={key}
-                            className="text-theme-900 bg-white p-4 rounded-md m-5 "
+                            className="text-theme-900 bg-white p-4 rounded-md m-5 lg:w-96 w-[353] h-52"
                         >
                             <div className="pb-1 flex">
                                 <svg
@@ -58,11 +36,11 @@ const Article = ({ articles }) => {
                                 {a.title}
                             </div>
                             <div className="pb-1 text-bold opacity-50">
-                                {a.description}
+                                {a.summary}
                             </div>
                             <div className="flex justify-end">
                                 <button className="bg-theme-500 px-3 py-1.5 rounded-md font-bold text-white border-2 border-theme-500 float-left cursor-pointer hover:border-2 hover:border-theme-500 hover:bg-white hover:text-theme-500">
-                                    <a  href={`/article/${a.slug}`}>قراءة</a>
+                                    <a href={`article/${a.slug}`}>قراءة</a>
                                 </button>
                             </div>
                         </div>
@@ -75,6 +53,7 @@ const Article = ({ articles }) => {
                     عرض باقي المقالات
                 </a>
             </div>
+            
         </div>
     );
 };

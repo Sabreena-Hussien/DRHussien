@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import footerImg from "../../images/footer1.jpg";
 import heroImg from "../../images/heroImg.png";
+import { useForm, usePage } from "@inertiajs/react";
 
 const Footer = () => {
     const menu = [
@@ -88,13 +89,39 @@ const Footer = () => {
         },
     ];
 
-    function handleChange(event) {
-        console.log(event.target.value);
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        email: "",
+        message: "",
+    });
+
+    const { success } = usePage().props;  
+    const [isSuccess, setIsSuccess] = useState(false);
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        post("/");
     }
+
+    // function handleChange(event) {
+    //     console.log(event.target.value);
+    // }
 
     const date = new Date();
 
     return (
+        <div>
+            {isSuccess && (
+                <div className="alert alert-success">
+                    {/* {success} */}
+                    <div className='absolute z-30 left-2 top-2 w-60 h-20 bg-white shadow-md opacity-95'>
+                        <button className="bg-red-600 w-5 h-5 text-white" onClick={() => {setIsSuccess(false)}}>X</button>
+                        <p className="flex text-center justify-center">تم الارسال بنجاح</p>
+                    </div>
+                </div>
+            )}
+
         <div
             style={{
                 backgroundImage: `url(${footerImg})`,
@@ -104,10 +131,12 @@ const Footer = () => {
                 height: "100%",
             }}
         >
+            
             <div className="absolute bg-theme-900 h-full w-full opacity-60 inset-0"></div>
             <div className="relative z-10 text-white mb-0">
                 <div className="container pt-8 pb-16 flex items-center justify-center lg:flex-row flex-col border-b-[1px] border-theme-500">
-                    <form className="w-full lg:pb-0 pb-20">
+                    <form className="w-full lg:pb-0 pb-20" onSubmit={handleSubmit}>
+                        
                         <h3 className="font-bold text-white text-3xl mb-8">
                             راسلني
                         </h3>
@@ -115,25 +144,35 @@ const Footer = () => {
                             type="name"
                             placeholder="الاسم"
                             className="bg-theme-100 opacity-70 p-3 mb-4 lg:w-96 w-full text-theme-900 placeholder:text-theme-900 rounded-md outline-none"
-                            // value={this.state.value}
-                            // onChange={this.handleChange}
+                            value={data.name}
+                            onChange={(e) =>
+                                setData("name", e.target.value)
+                            }
                         />
 
                         <input
                             type="email"
                             placeholder="البريد الالكتروني"
+                            value={data.email}
                             className="bg-theme-100 opacity-70 p-3 mb-4 lg:w-96 w-full text-theme-900 placeholder:text-theme-900 rounded-md outline-none"
+                            onChange={(e) =>
+                                setData("email", e.target.value)
+                            }
                         />
                         <textarea
                             className="bg-theme-100 opacity-70 p-3 mb-4 lg:w-96 w-full h-52 text-theme-900 placeholder:text-theme-900 rounded-md outline-none resize-none"
-                            defaultValue="الرسالة"
+                            placeholder="الرسالة"
+                            value={data.message}
+                            onChange={(e) =>
+                                setData("message", e.target.value)
+                            }
                         ></textarea>
-                        <input
+                        <button
                             type="submit"
-                            value="ارسال"
                             className="bg-theme-500 text-white font-bold rounded-md lg:w-96 w-full p-3 cursor-pointer text-base hover:bg-transparent hover:border hover:border-theme-100"
-                            onChange={handleChange}
-                        />
+                            disabled={processing}
+                            onClick={() => setIsSuccess(true)}
+                        >ارسال</button>
                     </form>
                     <div className="w-full flex flex-col items-center" id="contact">
                         <img
@@ -153,8 +192,6 @@ const Footer = () => {
                                 </li>
                             ))}
                         </ul>
-
-
 
                         <div className="flex lg:flex-row flex-col lg:flex-wrap">
                             {info.map((i) => (
@@ -178,6 +215,7 @@ const Footer = () => {
                 <div className="py-8 text-center">Copyright @ {date.getFullYear()} </div>
             </div>
         </div>
+    </div>
     );
 };
 

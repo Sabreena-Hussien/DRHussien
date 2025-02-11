@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -33,7 +34,9 @@ class TextMeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->label('الاسم'),
+                TextColumn::make('email')->label('الايميل'),
+                TextColumn::make('message')->label('الرسالة'),
             ])
             ->filters([
                 //
